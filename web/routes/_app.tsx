@@ -8,7 +8,7 @@ export default function App({ Component }: PageProps) {
         <title>livraria-organizada</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body>
+      <body class="min-h-screen">
         <Component />
       </body>
     </html>

@@ -10,4 +10,6 @@ export const livroSchema = baseSchema.extend({
   registros: z.array(registroSchema).optional()
 });
 
+export type Livro = z.infer<typeof livroSchema>;
+
 export const livroCollection = new Collection(pouchDB, 'livraria-organizada', livroSchema)

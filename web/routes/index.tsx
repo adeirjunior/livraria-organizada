@@ -35,7 +35,7 @@ export default function Home() {
         <h2 class="text-center">Livros Recentes</h2>
 
         <div class="flex flex-wrap gap-6 justify-center">
-          {Array(20).fill(null).map((_, index) => (
+          {Array(8).fill(null).map((_, index) => (
             <BookCard key={index} id={index} />
           ))}
         </div>

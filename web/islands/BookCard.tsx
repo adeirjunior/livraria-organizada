@@ -15,12 +15,9 @@ export default function BookCard({id}: BookProps) {
                   class="object-cover w-full h-60 rounded-t-lg"
                 />
               </figure>
-              <div class="card-body h-96">
+              <div class="card-body h-20">
                 <h2 class="card-title">Livro {id + 1}</h2>
                 <p>Descrição do livro {id + 1}</p>
-                <div class="card-actions justify-end">
-                  <button class="btn">Ver mais</button>
-                </div>
               </div>
             </div>
   );
