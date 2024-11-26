@@ -1,5 +1,6 @@
 import { type Config } from "tailwindcss";
 import daisyui from 'daisyui';
+import tailwindScrollbar from 'tailwind-scrollbar';
 
 export default {
   content: [
@@ -7,6 +8,7 @@ export default {
   ],
   plugins: [
     // @ts-expect-error: Couldn't identify the reason for this error
-    daisyui
+    daisyui,
+    tailwindScrollbar
   ]
 } satisfies Config;

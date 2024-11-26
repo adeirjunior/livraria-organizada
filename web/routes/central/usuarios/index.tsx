@@ -3,5 +3,5 @@ export default function Usuarios() {
         <div>
             Usuarios
         </div>
-    )
+    );
 }
