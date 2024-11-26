@@ -53,7 +53,7 @@ export default function Dashboard() {
                 <td>3</td>
                 <td>To Kill a Mockingbird</td>
                 <td>Emily Johnson</td>
-                <td class="text-error">Pesdido</td>
+                <td class="text-error">Perdido</td>
                 <td>2024-11-18</td>
               </tr>
             </tbody>
