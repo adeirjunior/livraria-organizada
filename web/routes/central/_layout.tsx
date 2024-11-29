@@ -34,8 +34,8 @@ export default defineLayout((req, ctx) => {
           <div class="flex justify-between">
             <Partial name="central-breadcrumbs">
               <Breadcrumbs segments={segments} />
-            </Partial>
-            <Modal />
+            
+            {segments.length === 2 && <Modal />}</Partial>
           </div>
 
           <Partial name="central-content">

@@ -6,8 +6,11 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $central_layout from "./routes/central/_layout.tsx";
 import * as $central_index from "./routes/central/index.tsx";
+import * as $central_livros_id_index from "./routes/central/livros/[id]/index.tsx";
 import * as $central_livros_index from "./routes/central/livros/index.tsx";
+import * as $central_registros_id_index from "./routes/central/registros/[id]/index.tsx";
 import * as $central_registros_index from "./routes/central/registros/index.tsx";
+import * as $central_usuarios_id_index from "./routes/central/usuarios/[id]/index.tsx";
 import * as $central_usuarios_index from "./routes/central/usuarios/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $livros_id_ from "./routes/livros/[id].tsx";
@@ -23,8 +26,11 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/central/_layout.tsx": $central_layout,
     "./routes/central/index.tsx": $central_index,
+    "./routes/central/livros/[id]/index.tsx": $central_livros_id_index,
     "./routes/central/livros/index.tsx": $central_livros_index,
+    "./routes/central/registros/[id]/index.tsx": $central_registros_id_index,
     "./routes/central/registros/index.tsx": $central_registros_index,
+    "./routes/central/usuarios/[id]/index.tsx": $central_usuarios_id_index,
     "./routes/central/usuarios/index.tsx": $central_usuarios_index,
     "./routes/index.tsx": $index,
     "./routes/livros/[id].tsx": $livros_id_,

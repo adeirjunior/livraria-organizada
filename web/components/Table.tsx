@@ -1,9 +1,8 @@
-import { Livro } from "../db/schemas/livro.ts";
-import { Usuario } from "../db/schemas/usuario.ts";
+import { TableData } from "../libs/types.ts";
 import DetailsDropdown from "./DetailsDropdown.tsx";
 
 export default function Table(
-  props: { data: Livro[] | Usuario[]; cols: string[] },
+  props: { data: TableData },
 ) {
   return (
     <div class="overflow-x-auto">
@@ -15,12 +14,12 @@ export default function Table(
                 <input type="checkbox" class="checkbox" />
               </label>
             </th>
-            {props.cols.map((col, index) => <th key={index}>{col}</th>)}
+            {props.data.cols.map((col, index) => <th key={index}>{col}</th>)}
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {props.data.map((item, index) => (
+          {props.data.content.map((item, index) => (
             <tr key={index}>
               <th>
                 <label>
@@ -32,7 +31,7 @@ export default function Table(
                   <>
                     <td>{item.titulo}</td>
                     <td>{item.autor}</td>
-                    <td>{item.disponivel ? "Sim" : "Não"}</td>
+                    <td><span class={`badge ${item.disponivel ? "badge-success" : "badge-error"}`}>{item.disponivel ? "Sim" : "Não"}</span></td>
                   </>
                 )
                 : (
@@ -42,7 +41,7 @@ export default function Table(
                   </>
                 )}
               <th>
-                <DetailsDropdown />
+                <DetailsDropdown id={item._id}/>
               </th>
             </tr>
           ))}
@@ -50,7 +49,7 @@ export default function Table(
         <tfoot>
           <tr>
             <th></th>
-            {props.cols.map((col, index) => <th key={index}>{col}</th>)}
+            {props.data.cols.map((col, index) => <th key={index}>{col}</th>)}
             <th></th>
           </tr>
         </tfoot>

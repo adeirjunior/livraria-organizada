@@ -1,24 +1,11 @@
 import Table from "../../../components/Table.tsx";
-import { Livro } from "../../../db/schemas/livro.ts";
 import Pagination from "../../../islands/Pagination.tsx";
-
-const books: Livro[] = [
-  {
-    _id: "",
-    titulo: "Nome do Livro",
-    autor: "Nome do Autor",
-    registros: [],
-    disponivel: true,
-    _rev: "",
-  },
-];
-
-const cols: string[] = ["título", "autor", "disponível"]
+import { livroTableData } from "../../../libs/data.ts";
 
 export default function Livros() {
   return (
     <div>
-      <Table data={books} cols={cols}/>
+      <Table data={livroTableData} />
       <Pagination />
     </div>
   );
