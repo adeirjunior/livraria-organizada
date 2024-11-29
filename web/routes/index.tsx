@@ -1,4 +1,4 @@
-import BookCard from "../islands/BookCard.tsx";
+import BookCard from "../components/BookCard.tsx";
 
 export default function Home() {
   return (

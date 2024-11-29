@@ -1,11 +1,7 @@
-interface LivroData {
-    _id: string;
-    titulo: string;
-    autor: string;
-    disponivel: boolean;
-  }
+import { LivroData } from "../libs/types.ts";
 
-   export class Usuario {
+
+   export class UsuarioRepository {
     private livros: LivroData[] = [];
 
     find(id: string): LivroData | undefined {

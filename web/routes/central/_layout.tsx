@@ -1,130 +1,48 @@
-import { PageProps } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/server.ts";
 import { Partial } from "$fresh/runtime.ts";
+import Modal from "../../islands/Modal.tsx";
+import DesktopNav from "../../components/DesktopNav.tsx";
+import MobileNav from "../../components/MobileNav.tsx";
+import SearchButtonIcon from "../../components/SearchButtonIcon.tsx";
+import NotificationButtonIcon from "../../components/NotificationButtonIcon.tsx";
+import Breadcrumbs from "../../components/Breadcrumbs.tsx";
+import { nav } from "../../libs/nav.ts";
 
-export default function Layout({ Component }: PageProps) {
-    return (
-        <div class="flex flex-col h-screen box-border pb-6">
-            <header f-client-nav class="navbar bg-base-100 flex-none">
-                <div class="navbar-start">
-                    <div class="dropdown md:hidden">
-                        <div
-                            tabindex={0}
-                            role="button"
-                            class="btn btn-ghost btn-circle"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h7"
-                                />
-                            </svg>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                        >
-                            <li>
-                                <a href="/central">Home</a>
-                            </li>
-                            <li>
-                                <a href="/central/livros">Livros</a>
-                            </li>
-                            <li>
-                                <a href="/central/registros">Registros</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="navbar-center">
-                    <a href="/central" class="btn btn-ghost text-xl">
-                        Livraria Organizada
-                    </a>
-                </div>
-                <div class="navbar-end">
-                    <button class="btn btn-ghost btn-circle">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                        </svg>
-                    </button>
-                    <button class="btn btn-ghost btn-circle">
-                        <div class="indicator">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                                />
-                            </svg>
-                            <span class="badge badge-xs badge-primary indicator-item">
-                            </span>
-                        </div>
-                    </button>
-                </div>
-            </header>
-            <div class="flex-auto flex overflow-hidden">
-                <nav
-                    f-client-nav
-                    class="hidden md:block w-full max-w-80 px-6 flex-none"
-                >
-                    <ul class="space-y-4">
-                        <li>
-                            <a
-                                class="btn border-4 border-gray-300 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-300 no-animation btn-outline w-full justify-start"
-                                href="/central"
-                            >
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                class="btn border-4 border-gray-300 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-300 no-animation btn-outline w-full justify-start"
-                                href="/central/livros"
-                            >
-                                Livros
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                class="btn border-4 border-gray-300 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-300 no-animation btn-outline w-full justify-start"
-                                href="/central/registros"
-                            >
-                                Registros
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="overflow-y-auto scrollbar scrollbar-thumb-primary scrollbar-track-transparent w-full md:border-4 border-gray-300 md:mr-6 rounded-xl p-6">
-                    <Partial name="central-content">
-                        <Component />
-                    </Partial>
-                </div>
-            </div>
+export default defineLayout((req, ctx) => {
+  const url = new URL(req.url);
+  const segments = url.pathname.split("/").filter(Boolean);
+
+  return (
+    <div class="flex flex-col h-screen box-border pb-6">
+      <header f-client-nav class="navbar bg-base-100 flex-none">
+        <div class="navbar-start">
+          <MobileNav nav={nav} />
         </div>
-    );
-}
+        <div class="navbar-center">
+          <a href="/central" class="btn btn-ghost text-xl">
+            Livraria Organizada
+          </a>
+        </div>
+        <div class="navbar-end">
+          <SearchButtonIcon />
+          <NotificationButtonIcon />
+        </div>
+      </header>
+      <div class="flex-auto flex overflow-hidden">
+        <DesktopNav nav={nav} />
+        <div class="overflow-y-auto scrollbar flex flex-col gap-4 scrollbar-thumb-primary scrollbar-track-transparent w-full md:border-4 border-gray-300 md:mr-6 rounded-xl p-6">
+          <div class="flex justify-between">
+            <Partial name="central-breadcrumbs">
+              <Breadcrumbs segments={segments} />
+            </Partial>
+            <Modal />
+          </div>
+
+          <Partial name="central-content">
+            <ctx.Component />
+          </Partial>
+        </div>
+      </div>
+    </div>
+  );
+});

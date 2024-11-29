@@ -17,7 +17,7 @@ export default function Modal() {
 
   return (
     <>
-      <button class="btn" onClick={openModal}>Open Modal</button>
+      <button class="btn" onClick={openModal}>Criar</button>
 
       <dialog ref={modalRef} class="modal">
         <div class="modal-box">
