@@ -1,4 +1,4 @@
-import { isBookArray, isUser, isUserArray } from "./utils.ts";
+import { isBook, isBookArray, isUser, isUserArray } from "./utils.ts";
 
 const BACKEND_URL = "http://localhost:3000"
 
@@ -29,5 +29,15 @@ export async function fetchBooks() {
         return data
     } else {
         throw new Error("Não esta sendo retornada uma array de livros")
+    }
+}
+
+export async function fetchBook(id: string) {
+    const response = await fetch(`${BACKEND_URL}/book/${id}`);
+    const data = await response.json();
+    if (isBook(data)) {
+        return data
+    } else {
+        throw new Error("Não esta sendo retornado um livro")
     }
 }
