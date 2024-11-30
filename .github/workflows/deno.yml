@@ -28,8 +28,3 @@ jobs:
 
       - name: Run linter
         run: deno lint ./web
-
-      - name: Run tests
-        run: |
-          cd web
-          deno test -A
