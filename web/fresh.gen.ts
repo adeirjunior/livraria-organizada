@@ -15,6 +15,7 @@ import * as $central_usuarios_index from "./routes/central/usuarios/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $livros_id_ from "./routes/livros/[id].tsx";
 import * as $livros_index from "./routes/livros/index.tsx";
+import * as $DetailsDropdown from "./islands/DetailsDropdown.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $Pagination from "./islands/Pagination.tsx";
 import * as $Search from "./islands/Search.tsx";
@@ -37,6 +38,7 @@ const manifest = {
     "./routes/livros/index.tsx": $livros_index,
   },
   islands: {
+    "./islands/DetailsDropdown.tsx": $DetailsDropdown,
     "./islands/Modal.tsx": $Modal,
     "./islands/Pagination.tsx": $Pagination,
     "./islands/Search.tsx": $Search,

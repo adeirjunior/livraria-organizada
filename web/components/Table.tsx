@@ -1,5 +1,5 @@
 import { TableData } from "../libs/types.ts";
-import DetailsDropdown from "./DetailsDropdown.tsx";
+import DetailsDropdown from "../islands/DetailsDropdown.tsx";
 
 export default function Table(
   props: { data: TableData },
