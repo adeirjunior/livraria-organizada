@@ -29,6 +29,5 @@
     "tailwindcss-animate": "npm:tailwindcss-animate",
     "daisyui": "npm:daisyui@4.7.2"
   },
-  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
-  "nodeModulesDir": "auto"
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }
