@@ -1,19 +1,22 @@
-import { Livro } from "../db/schemas/livro.ts";
-import { Usuario } from "../db/schemas/usuario.ts";
-
 export interface Nav {
   name: string;
   url: string;
 }
 
-export interface LivroData {
-  _id: string;
-  titulo: string;
-  autor: string;
-  disponivel: boolean;
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface Book {
+  id: string;
+  title: string;
+  author: string;
+  avaliable: boolean;
 }
 
 export interface TableData {
-  content: Livro[] | Usuario[];
+  content: Book[] | User[];
   cols: string[];
 }

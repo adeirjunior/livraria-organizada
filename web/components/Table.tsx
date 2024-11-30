@@ -26,22 +26,30 @@ export default function Table(
                   <input type="checkbox" class="checkbox" />
                 </label>
               </th>
-              {"titulo" in item
+              {"title" in item
                 ? (
                   <>
-                    <td>{item.titulo}</td>
-                    <td>{item.autor}</td>
-                    <td><span class={`badge ${item.disponivel ? "badge-success" : "badge-error"}`}>{item.disponivel ? "Sim" : "Não"}</span></td>
+                    <td>{item.title}</td>
+                    <td>{item.author}</td>
+                    <td>
+                      <span
+                        class={`badge ${
+                          item.avaliable ? "badge-success" : "badge-error"
+                        }`}
+                      >
+                        {item.avaliable ? "Sim" : "Não"}
+                      </span>
+                    </td>
                   </>
                 )
                 : (
                   <>
-                    <td>{item.nome}</td>
+                    <td>{item.name}</td>
                     <td>{item.email}</td>
                   </>
                 )}
               <th>
-                <DetailsDropdown id={item._id}/>
+                <DetailsDropdown id={item.id} />
               </th>
             </tr>
           ))}
