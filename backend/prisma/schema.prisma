@@ -21,9 +21,9 @@ model User {
 model Registry {
   id String @id @default(cuid())
 
-  Userid String
-  User   User   @relation(fields: [Userid], references: [id])
-  Book   Book[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  book   Book[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
