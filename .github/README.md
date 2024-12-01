@@ -2,7 +2,9 @@
 
 ## Sistema de Gerenciamento de Empréstimos de Livros com RFID e NFC
 
-Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma biblioteca, utilizando **Fresh.js**, **TypeScript**, **Tailwind CSS**, **PouchDB** e integração com **Arduino**. A interação com o sistema é feita através de cartões **NFC** para identificar usuários e etiquetas **RFID** para identificar livros.
+![central](../central.png)
+
+Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma biblioteca, utilizando **Fresh.js**, **TypeScript**, **NestJS**, **Prisma**, **SQLite** e integração com **Arduino**. A interação com o sistema é feita através de cartões **NFC** para identificar usuários e etiquetas **RFID** para identificar livros.
 
 ## 🚀 Funcionalidades
 
@@ -14,8 +16,6 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
   - Histórico detalhado das movimentações (livros, usuários e datas).
 - **Login via cartão NFC:**
   - Cada usuário possui um cartão NFC para autenticação no sistema.
-- **Offline First:**
-  - Funcionalidade offline com sincronização automática via **PouchDB**.
 - **Interface moderna:**
   - Visual amigável e responsivo com **Tailwind CSS**.
 
@@ -23,18 +23,18 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
 
 ## 🛠️ Tecnologias Utilizadas
 
-### **Plataforma**
-
+### **Frontend**
 - **Fresh.js**: Framework moderno para aplicações web usando **Deno**.
 - **TypeScript**: Garantia de segurança e tipagem no código.
 - **Tailwind CSS**: Para estilização rápida e responsiva.
 
-### **Banco de Dados**
-
-- **PouchDB**: Banco de dados local com suporte para sincronização remota.
+### **Backend**
+- **NestJS**: Framework para criar servidores escaláveis e eficientes com **TypeScript**.
+- **Prisma**: ORM para interagir com o banco de dados **SQLite** de forma eficiente.
+- **SQLite**: Banco de dados relacional utilizado para armazenamento das informações da biblioteca.
+- **Swagger**: Documentação da API, é possível acessar em `http://localhost:3000/api`
 
 ### **Hardware**
-
 - **Arduino**: Leitura de etiquetas **RFID** e cartões **NFC**.
 - **Módulo NFC/RFID**: Para captura dos IDs dos livros e usuários.
 
@@ -63,6 +63,7 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
 ### Pré-requisitos
 
 - **Deno** (v1.35+)
+- **Node.js** e **NestJS** para rodar o backend
 - **Arduino** com suporte a RFID e NFC
 - **Módulo RFID/NFC** (ex.: RC522)
 - **Git** para clonar o repositório
@@ -76,24 +77,42 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
    cd sistema-biblioteca
    ```
 
-2. Instale as dependências:
+2. Instale as dependências do frontend (Fresh.js):
 
    ```bash
    deno task update
    ```
 
-3. Configure o banco de dados local:
-   - O banco **PouchDB** será automaticamente inicializado ao iniciar o servidor.
+3. Instale as dependências do backend (NestJS):
 
-4. Inicie o servidor:
+   ```bash
+   cd backend
+   npm install
+   ```
+
+4. Configure o banco de dados **SQLite** utilizando o **Prisma**:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. Inicie o servidor de backend:
+
+   ```bash
+   npm run start
+   ```
+
+   O backend estará disponível em [http://localhost:3000](http://localhost:3000).
+
+6. Inicie o servidor de frontend:
 
    ```bash
    deno task start
    ```
 
-   Acesse [http://localhost:8000](http://localhost:8000).
+   O frontend estará disponível em [http://localhost:8000](http://localhost:8000).
 
-5. Configure o Arduino para enviar dados para a aplicação.
+7. Configure o Arduino para enviar dados para a aplicação.
 
 ---
 
@@ -101,7 +120,7 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
 
 ### **Autenticação**
 
-- **`POST /api/auth/login`**  
+- **POST /api/auth/login**  
   Registra o login do usuário autenticado com o cartão NFC.  
   Corpo da requisição:
 
@@ -113,10 +132,10 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
 
 ### **Livros**
 
-- **`GET /api/livros`**  
+- **GET /api/livros**  
   Retorna a lista de livros cadastrados.
 
-- **`POST /api/livros`**  
+- **POST /api/livros**  
   Adiciona um novo livro:  
 
   ```json
@@ -129,7 +148,7 @@ Este projeto é um sistema moderno para gerenciar empréstimos de livros em uma 
 
 ### **Registros**
 
-- **`POST /api/registros`**  
+- **POST /api/registros**  
   Registra uma movimentação de livro:  
 
   ```json
