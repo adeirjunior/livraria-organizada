@@ -18,6 +18,7 @@ import * as $livros_index from "./routes/livros/index.tsx";
 import * as $DetailsDropdown from "./islands/DetailsDropdown.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $Pagination from "./islands/Pagination.tsx";
+import * as $RegistryForm from "./islands/RegistryForm.tsx";
 import * as $Search from "./islands/Search.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -41,6 +42,7 @@ const manifest = {
     "./islands/DetailsDropdown.tsx": $DetailsDropdown,
     "./islands/Modal.tsx": $Modal,
     "./islands/Pagination.tsx": $Pagination,
+    "./islands/RegistryForm.tsx": $RegistryForm,
     "./islands/Search.tsx": $Search,
   },
   baseUrl: import.meta.url,

@@ -1,6 +1,9 @@
 import { useRef } from "preact/hooks";
+import BookForm from "../components/BookForm.tsx";
+import UserForm from "../components/UserForm.tsx";
+import RegistryForm from "./RegistryForm.tsx";
 
-export default function Modal() {
+export default function Modal({ page }: { page: string }) {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const openModal = () => {
@@ -20,15 +23,21 @@ export default function Modal() {
       <button class="btn" onClick={openModal}>Criar</button>
 
       <dialog ref={modalRef} class="modal">
-        <div class="modal-box">
-          <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Press ESC key or click the button below to close</p>
-          <div class="modal-action">
-            <form method="dialog" onSubmit={closeModal}>
-              <button class="btn">Close</button>
-            </form>
+        <form method="post">
+          <div class="modal-box">
+            {page === "livros"
+              ? <BookForm />
+              : page === "usuarios"
+              ? <UserForm />
+              : <RegistryForm/>}
+            <div class="modal-action flex justify-center">
+              <form method="dialog" onSubmit={closeModal}>
+                <button class="btn">Fechar</button>
+              </form>
+              <button class="btn">Enviar</button>
+            </div>
           </div>
-        </div>
+        </form>
       </dialog>
     </>
   );

@@ -35,7 +35,7 @@ export default defineLayout((req, ctx) => {
             <Partial name="central-breadcrumbs">
               <Breadcrumbs segments={segments} />
             
-            {segments.length === 2 && <Modal />}</Partial>
+            {segments.length === 2 && <Modal page={segments[segments.length - 1]} />}</Partial>
           </div>
 
           <Partial name="central-content">

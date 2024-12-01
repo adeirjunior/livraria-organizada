@@ -17,6 +17,12 @@ export interface Book {
 }
 
 export interface TableData {
-  content: Book[] | User[];
+  content: Book[] | User[] | Registry[];
   cols: string[];
+}
+
+export interface Registry {
+  id: string;
+  userId: string;
+  books: Book[]
 }

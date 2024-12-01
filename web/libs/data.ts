@@ -22,3 +22,9 @@ export const livroTableData: TableData = {
   ],
   cols: ["título", "autor", "disponível"],
 };
+
+export const registroTableData: TableData = {
+  content: [
+  ],
+  cols: ["título", "autor", "disponível"],
+};

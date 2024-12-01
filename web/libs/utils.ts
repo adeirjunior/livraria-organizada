@@ -18,18 +18,17 @@ export function isUserArray(data: any): data is User[] {
 
 // deno-lint-ignore no-explicit-any
 export function isBook(data: any): data is Book {
-    return (
-      typeof data === "object" &&
-      data !== null &&
-      typeof data.id === "string" &&
-      typeof data.title === "string" &&
-      typeof data.author === "string" &&
-      typeof data.avaliable === "boolean"
-    );
-  }
-  
-  // deno-lint-ignore no-explicit-any
-  export function isBookArray(data: any): data is Book[] {
-    return Array.isArray(data) && data.every(isBook);
-  }
-  
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    typeof data.id === "string" &&
+    typeof data.title === "string" &&
+    typeof data.author === "string" &&
+    typeof data.avaliable === "boolean"
+  );
+}
+
+// deno-lint-ignore no-explicit-any
+export function isBookArray(data: any): data is Book[] {
+  return Array.isArray(data) && data.every(isBook);
+}

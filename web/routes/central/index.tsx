@@ -1,23 +1,41 @@
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { DashboardAnalyticsCard } from "../../components/DashboardAnalyticsCard.tsx";
+import { fetchBooks, fetchRegistries, fetchUsers } from "../../libs/fetches.ts";
 
-export default function Dashboard() {
+interface Data {
+  books: string;
+  users: string;
+  registries: string
+}
+
+export const handler: Handlers<Data> = {
+  async GET(_req, ctx) {
+    const books = (await fetchBooks()).length.toString();
+    const users = (await fetchUsers()).length.toString();
+    const registries = (await fetchRegistries()).length.toString();
+
+    return ctx.render({ books, users, registries });
+  },
+};
+
+export default function Dashboard(props: PageProps<Data>) {
   return (
     <>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <DashboardAnalyticsCard
           class="card bg-primary text-primary-content"
           title="Total de Livros"
-          stats="1,234"
+          stats={props.data.books}
         />
         <DashboardAnalyticsCard
           class="card bg-accent text-accent-content"
           title="Empréstimos Ativos"
-          stats="256"
+          stats={props.data.registries}
         />
         <DashboardAnalyticsCard
           class="card bg-secondary text-secondary-content"
           title="Usuários registrados"
-          stats="789"
+          stats={props.data.users}
         />
       </div>
       <section class="mt-8">

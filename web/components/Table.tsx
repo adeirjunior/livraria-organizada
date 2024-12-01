@@ -42,10 +42,16 @@ export default function Table(
                     </td>
                   </>
                 )
-                : (
+                : "name" in item
+                ? (
                   <>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
+                  </>
+                )
+                : (
+                  <>
+                    <td>{item.userId}</td>
                   </>
                 )}
               <th>

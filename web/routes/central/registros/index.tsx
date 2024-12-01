@@ -1,43 +1,35 @@
-export default function Registros() {
+import { Handlers, PageProps } from "$fresh/server.ts";
+import Table from "../../../components/Table.tsx";
+import { registroTableData } from "../../../libs/data.ts";
+import { createRegistry, fetchRegistries } from "../../../libs/fetches.ts";
+import { Registry } from "../../../libs/types.ts";
+
+interface Data {
+  registries: Registry[];
+}
+
+export const handler: Handlers<Data> = {
+  async GET(_req, ctx) {
+    const value = await fetchRegistries();
+    return ctx.render({ registries: value });
+  },
+  async POST(req, _ctx) {
+    const form = await req.formData();
+    const userId = form.get("userId")?.toString()!;
+    
+    await createRegistry({userId})
+
+    return new Response(null, {
+      status: 201,
+    });
+  },
+};
+
+export default function Registros(props: PageProps<Data>) {
     return (
         <section>
         <h2 class="text-xl font-bold mb-4">Registros</h2>
-        <div class="overflow-x-auto">
-          <table class="table w-full">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Livro</th>
-                <th>Usuário</th>
-                <th>Status</th>
-                <th>Data</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>The Great Gatsby</td>
-                <td>John Doe</td>
-                <td class="text-success">Retornado</td>
-                <td>2024-11-21</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>1984</td>
-                <td>Jane Smith</td>
-                <td class="text-warning">Emprestado</td>
-                <td>2024-11-19</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>To Kill a Mockingbird</td>
-                <td>Emily Johnson</td>
-                <td class="text-error">Perdido</td>
-                <td>2024-11-18</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <Table data={{content: props.data.registries, cols: registroTableData.cols}} />
       </section>
     )
 }
