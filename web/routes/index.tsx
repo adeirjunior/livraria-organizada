@@ -1,6 +1,20 @@
+import { Handlers, PageProps } from "$fresh/server.ts";
 import BookCard from "../components/BookCard.tsx";
+import { fetchBooks } from "../libs/fetches.ts";
+import { Book } from "../libs/types.ts";
 
-export default function Home() {
+interface Data {
+  books: Book[];
+}
+
+export const handler: Handlers<Data> = {
+  async GET(_req, ctx) {
+    const value = await fetchBooks();
+    return ctx.render({ books: value });
+  }
+};
+
+export default function Home(props: PageProps<Data>) {
   return (
     <>
       <div class="hero bg-base-200 py-6">
@@ -35,8 +49,8 @@ export default function Home() {
         <h2 class="text-center">Livros Recentes</h2>
 
         <div class="flex flex-wrap gap-6 justify-center">
-          {Array(8).fill(null).map((_, index) => (
-            <BookCard key={index} id={index} />
+          {props.data.books.map((book, index) => (
+            <BookCard key={index} book={book} />
           ))}
         </div>
         
