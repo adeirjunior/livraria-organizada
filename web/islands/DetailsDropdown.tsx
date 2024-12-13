@@ -29,8 +29,6 @@ export default function DetailsDropdown({ id }: { id: string }) {
       } else {
         await deleteRegistry(id);
       }
-      
-      globalThis.location.reload();
     } catch (error) {
       console.error("Erro ao deletar o livro:", error);
     } finally {
@@ -40,7 +38,7 @@ export default function DetailsDropdown({ id }: { id: string }) {
 
   return (
     <div className="flex flex-row gap-4">
-      <a className="btn" href={`${basePath}/${id}`}>Editar</a>
+      <a className="btn" f-client-nav href={`${basePath}/${id}`}>Editar</a>
       <button
         className="btn"
         onClick={handleDelete}

@@ -17,15 +17,17 @@ export const handler: Handlers<Data> = {
     const form = await req.formData();
     const title = form.get("title")?.toString()!;
     const author = form.get("author")?.toString()!;
-    const avaliable = form.get("avaliable") as unknown as boolean
-    
-    await createBook({title, author, avaliable})
+    const avaliable = form.get("avaliable") === "true";
 
-    return new Response(null, {
+    const books = await createBook({ title, author, avaliable });
+    
+    return new Response(JSON.stringify({ books }), {
+      headers: { "Content-Type": "application/json" },
       status: 201,
     });
   },
 };
+
 
 export default function Livros(props: PageProps<Data>) {
   return (
