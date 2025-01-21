@@ -20,6 +20,7 @@ import * as $Modal from "./islands/Modal.tsx";
 import * as $Pagination from "./islands/Pagination.tsx";
 import * as $RegistryForm from "./islands/RegistryForm.tsx";
 import * as $Search from "./islands/Search.tsx";
+import * as $SearchButtonIcon from "./islands/SearchButtonIcon.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -44,6 +45,7 @@ const manifest = {
     "./islands/Pagination.tsx": $Pagination,
     "./islands/RegistryForm.tsx": $RegistryForm,
     "./islands/Search.tsx": $Search,
+    "./islands/SearchButtonIcon.tsx": $SearchButtonIcon,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

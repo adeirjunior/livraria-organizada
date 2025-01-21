@@ -5,7 +5,7 @@ import { fetchBooks, fetchRegistries, fetchUsers } from "../../libs/fetches.ts";
 interface Data {
   books: string;
   users: string;
-  registries: string
+  registries: string;
 }
 
 export const handler: Handlers<Data> = {

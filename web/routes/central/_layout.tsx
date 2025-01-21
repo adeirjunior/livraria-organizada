@@ -3,7 +3,7 @@ import { Partial } from "$fresh/runtime.ts";
 import Modal from "../../islands/Modal.tsx";
 import DesktopNav from "../../components/DesktopNav.tsx";
 import MobileNav from "../../components/MobileNav.tsx";
-import SearchButtonIcon from "../../components/SearchButtonIcon.tsx";
+import SearchButtonIcon from "../../islands/SearchButtonIcon.tsx";
 import NotificationButtonIcon from "../../components/NotificationButtonIcon.tsx";
 import Breadcrumbs from "../../components/Breadcrumbs.tsx";
 import { nav } from "../../libs/nav.ts";
@@ -24,7 +24,7 @@ export default defineLayout((req, ctx) => {
           </a>
         </div>
         <div class="navbar-end">
-          <SearchButtonIcon />
+        <Partial name="nav-content">{segments.length === 2 && <SearchButtonIcon />}</Partial>
           <NotificationButtonIcon />
         </div>
       </header>
@@ -34,8 +34,9 @@ export default defineLayout((req, ctx) => {
           <div class="flex justify-between">
             <Partial name="central-breadcrumbs">
               <Breadcrumbs segments={segments} />
-            
-            {segments.length === 2 && <Modal page={segments[segments.length - 1]} />}</Partial>
+
+              {segments.length === 2 && <Modal page={segments[segments.length - 1]} />}
+            </Partial>
           </div>
 
           <Partial name="central-content">
