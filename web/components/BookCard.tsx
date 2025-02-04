@@ -8,8 +8,8 @@ export default function BookCard({ book }: {book: Book}) {
     >
       <div class="h-60"></div>
       <div class="card-body h-20">
-        <h2 class="card-title">{book.title}</h2>
-        <p>{book.author}</p>
+        <p class="card-title">{book.author}</p>
+        <h2>{book.title}</h2>
       </div>
     </div>
   );
