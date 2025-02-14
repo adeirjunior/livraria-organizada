@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import BookCard from "../components/BookCard.tsx";
+import ArduinoData from "../islands/ArduinoData.tsx";
 import { fetchBooks } from "../libs/fetches.ts";
 import { Book } from "../libs/types.ts";
 
@@ -11,7 +12,7 @@ export const handler: Handlers<Data> = {
   async GET(_req, ctx) {
     const value = await fetchBooks();
     return ctx.render({ books: value });
-  }
+  },
 };
 
 export default function Home(props: PageProps<Data>) {
@@ -45,6 +46,7 @@ export default function Home(props: PageProps<Data>) {
           </div>
         </div>
       </div>
+      <ArduinoData/>
       <section class="m-8 space-y-6 font-bold text-4xl">
         <h2 class="text-center">Livros Recentes</h2>
 
@@ -53,7 +55,6 @@ export default function Home(props: PageProps<Data>) {
             <BookCard key={index} book={book} />
           ))}
         </div>
-        
       </section>
     </>
   );

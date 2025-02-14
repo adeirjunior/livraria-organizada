@@ -8,10 +8,17 @@ import { BookService } from './book/book.service';
 import { BookModule } from './book/book.module';
 import { RegistryModule } from './registry/registry.module';
 import { RegistryService } from './registry/registry.service';
+import { AppGateway } from './app.gateway';
 
 @Module({
   imports: [ConfigModule.forRoot(), UserModule, BookModule, RegistryModule],
   controllers: [AppController],
-  providers: [UserService, BookService, PrismaService, RegistryService],
+  providers: [
+    UserService,
+    BookService,
+    PrismaService,
+    RegistryService,
+    AppGateway,
+  ],
 })
 export class AppModule {}

@@ -1,24 +1,24 @@
-#include <SoftwareSerial.h>
+#include <Wire.h>
+#include <PN532_I2C.h>
+#include <PN532.h>
+#include <NfcAdapter.h>
 
-SoftwareSerial mySerial(10, 11); // RX, TX para comunicar com o leitor RFID
+PN532_I2C pn532_i2c(Wire);
+NfcAdapter nfc = NfcAdapter(pn532_i2c);
 
 void setup() {
-  Serial.begin(9600);
-  mySerial.begin(9600);
+  Serial.begin(115200);
+  Serial.println("Arduino pronto para leitura NFC...");
+  nfc.begin();
 }
 
 void loop() {
-  if (mySerial.available()) {
-    String tag = mySerial.readString();
-    // Enviar a requisição HTTP para registrar a entrada/saída do livro
-    sendRequest(tag);
+  if (nfc.tagPresent()) {
+    NfcTag tag = nfc.read();
+    
+    Serial.print("UID:");
+    Serial.println(tag.getUidString());
+    
+    delay(1000);
   }
-}
-
-void sendRequest(String tag) {
-  String url = "http://seu-servidor/api/registros"; // URL da sua API
-  String payload = "{\"livroId\": " + tag + ", \"tipo\": \"entrada\"}"; // Supondo que o tag seja o ID do livro
-  
-  Serial.println("Enviando requisição para registrar o livro...");
-  // Código para enviar a requisição HTTP
 }
