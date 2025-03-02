@@ -23,6 +23,7 @@ describe('UserController', () => {
           id: '23423423kl42bnkh',
           name: 'John Doe',
           email: 'test@domain.com',
+          nfcCode: '1213-casDa-s4cAA0bc',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

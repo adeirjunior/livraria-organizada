@@ -24,6 +24,7 @@ describe('BookController', () => {
           title: 'John Doe',
           author: 'test@domain.com',
           avaliable: true,
+          nfcCode: '1213-casDa-s4cAA0bc',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
