@@ -20,7 +20,7 @@ export default function Modal({ page }: { page: string }) {
 
   return (
     <>
-      <button class="btn" onClick={openModal}>Criar</button>
+      <button type="button" class="btn" onClick={openModal}>Criar</button>
 
       <dialog ref={modalRef} class="modal">
         <form
@@ -62,9 +62,9 @@ export default function Modal({ page }: { page: string }) {
               : <RegistryForm />}
             <div class="modal-action flex justify-center">
               <form method="dialog" onSubmit={closeModal}>
-                <button class="btn">Fechar</button>
+                <button type="submit" class="btn">Fechar</button>
               </form>
-              <button class="btn">Enviar</button>
+              <button type="button" class="btn">Enviar</button>
             </div>
           </div>
         </form>
