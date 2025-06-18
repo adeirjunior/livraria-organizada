@@ -20,7 +20,7 @@ export const handler: Handlers<Data> = {
     const avaliable = form.get("avaliable") === "true";
 
     const books = await createBook({ title, author, avaliable });
-    
+
     return new Response(JSON.stringify({ books }), {
       headers: { "Content-Type": "application/json" },
       status: 201,

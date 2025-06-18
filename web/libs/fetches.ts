@@ -1,4 +1,4 @@
-import { isBook, isBookArray, isUser, isUserArray } from "./utils.ts";
+import { getRandomString, isBook, isBookArray, isUser, isUserArray } from "./utils.ts";
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -43,9 +43,11 @@ export async function deleteUser(id: string) {
 }
 
 export async function createUser(user: { name: string; email: string }) {
+  const nfcCode = getRandomString(50);
+
   const response = await fetch(`${BACKEND_URL}/user`, {
     method: "POST",
-    body: JSON.stringify(user),
+    body: JSON.stringify({...user, nfcCode}),
     headers: {
       "Content-Type": "application/json",
     },
@@ -103,10 +105,13 @@ export async function createBook(
 ) {
   const { avaliable } = book;
   book.avaliable = avaliable === "on" ? true : false;
+  const nfcCode = getRandomString(50)
+
+  console.log(nfcCode)
 
   const response = await fetch(`${BACKEND_URL}/book`, {
     method: "POST",
-    body: JSON.stringify(book),
+    body: JSON.stringify({...book, nfcCode}),
     headers: {
       "Content-Type": "application/json",
     },
